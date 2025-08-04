@@ -24,3 +24,16 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_employees_email ON employees(email);
 CREATE INDEX idx_employees_position ON employees(position);
+
+CREATE TABLE leave_requests (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  from_date DATE NOT NULL,
+  to_date DATE NOT NULL,
+  type VARCHAR(50) NOT NULL,
+  reason TEXT NOT NULL,
+  status ENUM('Pending', 'Approved', 'Rejected') DEFAULT 'Pending',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);

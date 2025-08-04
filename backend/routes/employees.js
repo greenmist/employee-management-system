@@ -11,8 +11,11 @@ const router = express.Router();
 router.get('/', auth, async (req, res) => {
   try {
     const [rows] = await pool.execute(
-      'SELECT id, name, email, position, salary, place, created_at, updated_at FROM users ORDER BY created_at DESC'
+      "SELECT id, name, email, position, salary, place, created_at, updated_at FROM users WHERE role = 'employee' ORDER BY created_at DESC;"
     );
+    if (rows.length === 0) {
+      return res.status(404).json({ message: 'No employees found' });
+    }    
     res.json(rows);
   } catch (error) {
     console.error('Get users error:', error);
