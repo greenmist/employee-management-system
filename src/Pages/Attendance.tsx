@@ -50,7 +50,7 @@ const Attendance: React.FC = () => {
   return (
     <>
       <Navbar />
-      <div style={{ padding: '40px', backgroundColor: '#f4f7ff', minHeight: '100vh' }}>
+      <div>
         <h2 style={{ textAlign: 'center', color: '#003399', marginBottom: '32px' }}>⏱️ Attendance</h2>
 
         <div
